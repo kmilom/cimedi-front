@@ -1,0 +1,15 @@
+.head {
+    background-color: #083F93;
+}
+
+.image {
+    text-align: left;
+}
+
+.imagen-landing {
+    background-image: url(../../assets/images/imagelanding.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
