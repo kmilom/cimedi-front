@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 
 const LandingPage = () => {
     return(
-        <Row>
+        <Row id = 'box' className="border">
             <Col style={{ backgroundColor: "white" }} >
                 <Row>
                     <Col xs = { 12 } md = { 6 } className = "imagen-landing" style={{ minHeight: '70vh' }}>

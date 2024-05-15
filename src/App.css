@@ -1,5 +1,12 @@
 .App {
   text-align: center;
-  background-color: #E5DFDF;
   min-height: 100vmin;
+  background-color: #E5DFDF;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer{
+  background-color: #083F93;
+  color: white;
 }

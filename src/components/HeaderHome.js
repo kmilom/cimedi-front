@@ -1,6 +1,7 @@
 import React from "react";
-import { Col, Row, Image, Button } from "react-bootstrap";
-import logo from "../assets/images/logocimedi.png"
+import { Col, Row, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const HeaderHome = () => {
     return(
@@ -8,10 +9,12 @@ const HeaderHome = () => {
             <Col className = "head py-3">
                 <Row>
                     <Col xs = {{ span: 1 }} className = "image">
-                        <Image src={ logo } roundedCircle style={{ width: '50px', height: '50px' }} />
+                        <Logo />
                     </Col>
-                    <Col xs = {{ span: 2, offset: 9 }}>
-                        <Button variant = "info">&nbsp;&nbsp;&nbsp;&nbsp;Sign In&nbsp;&nbsp;&nbsp;&nbsp;</Button>
+                    <Col xs = {{ span: 4, offset: 7 }} md = {{ span: 3, offset: 8 }} className = "py-3">
+                        <Link to = "/login">
+                            <Button variant = "info">&nbsp;&nbsp;&nbsp;&nbsp;Sign In&nbsp;&nbsp;&nbsp;&nbsp;</Button>
+                        </Link>
                     </Col>
                 </Row>
             </Col>
