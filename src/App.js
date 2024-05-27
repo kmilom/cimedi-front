@@ -5,6 +5,7 @@ import NotFound from "./components/NotFound"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/Login';
 import SesionAdmin from './pages/SesionAdmin';
+import Registro from './pages/Resgistro';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <SesionAdmin />
+  },
+  {
+    path: "/registro",
+    element: <Registro />
   }
 ])
 
