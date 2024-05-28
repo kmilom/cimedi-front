@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Table } from "react-bootstrap";
+import { Button, Col, Form, Modal, Row, Table } from "react-bootstrap";
 import MenuAdmin from "./MenuAdmin";
 import axios from "axios";
 
 const UserList = () => {
 
     const [usuarios, setUsuarios] = useState([])
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedUsuario, setSelectedUsuario] = useState(null);
+
 
     useEffect(() => {
         const fetchUsuarios = async () => {
@@ -19,6 +22,39 @@ const UserList = () => {
     
         fetchUsuarios();
       }, []);
+
+      const handleEliminar = async (idUsuario) => {
+        try {
+            await axios.delete(`http://localhost:8000/api/eliminar-usuario/${idUsuario}`);
+            // Actualizar el estado para reflejar la eliminación
+            setUsuarios(usuarios.filter(usuario => usuario.idUsuario !== idUsuario));
+        } catch (error) {
+            console.error('Error eliminando usuario:', error);
+        }
+    };
+
+    const handleEdit = (usuario) => {
+        setSelectedUsuario(usuario);
+        setShowEditModal(true);
+    };
+
+    const handleSave = async () => {
+        try {
+            await axios.put(`http://localhost:8000/api/editar-usuario/${selectedUsuario.idUsuario}`, selectedUsuario);
+            setUsuarios(usuarios.map(usuario => (usuario.idUsuario === selectedUsuario.idUsuario ? selectedUsuario : usuario)));
+            setShowEditModal(false);
+        } catch (error) {
+            console.error('Error actualizando usuario:', error);
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setSelectedUsuario(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
     return(
         <Row>
@@ -35,6 +71,8 @@ const UserList = () => {
                                 <th>Usuario</th>
                                 <th>Contraseña</th>
                                 <th>Rol</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +82,16 @@ const UserList = () => {
                                     <td>{item.User}</td>
                                     <td>{item.Password}</td>
                                     <td>{item.idRol}</td>
+                                    <td>
+                                        <Button onClick={() => handleEdit(item)}>Editar</Button>
+                                    </td>
+                                    <td><Button 
+                                            onClick={() => handleEliminar(item.idUsuario)}
+                                            variant="danger"
+                                        >
+                                            Eliminar
+                                        </Button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -52,6 +100,53 @@ const UserList = () => {
                     <p>Loading data...</p>
                 )}
             </Col>
+
+            {selectedUsuario && (
+                <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Editar Usuario</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label>Usuario</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="User"
+                                    value={selectedUsuario.User}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Contraseña</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="Password"
+                                    value={selectedUsuario.Password}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Rol</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="idRol"
+                                    value={selectedUsuario.idRol}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={handleSave}>
+                            Guardar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )}
         </Row>
     )
 }
