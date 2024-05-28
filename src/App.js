@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/Login';
 import SesionAdmin from './pages/SesionAdmin';
 import Registro from './pages/Resgistro';
+import UserList from './components/UserList'
+import MedicosList from './components/MedicosList';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +21,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <SesionAdmin />
+    element: <SesionAdmin />,
+  },
+  { 
+    path: "/dashboard/usuarios",
+    element: <UserList />
+  },
+  {
+    path: "/dashboard/medicos",
+    element: <MedicosList />
   },
   {
     path: "/registro",

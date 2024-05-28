@@ -97,9 +97,19 @@ const FormPersona = () => {
             };
             console.log('Nuevo Usuario:', newPaciente);
 
+            const usuario = {
+                idUsuario: idPersona,
+                User: persona.Documento,
+                Password: persona.Documento,
+                idRol: 3
+            }
+
             // Enviar datos del usuario al backend
             const responsePaciente = await axios.post('http://127.0.0.1:8000/api/crear-paciente', newPaciente);
             console.log('ID Paciente:', responsePaciente.data.idPaciente);
+
+            const responseUsuario = await axios.post('http://127.0.0.1:8000/api/crear-usuario', usuario)
+            console.log('Usuario', responseUsuario.data.idUsuario)
         } catch (error) {
             console.error("Login Error: ", error);
         }
