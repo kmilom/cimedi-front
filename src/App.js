@@ -8,6 +8,8 @@ import SesionAdmin from './pages/SesionAdmin';
 import Registro from './pages/Resgistro';
 import UserList from './components/UserList'
 import MedicosList from './components/MedicosList';
+import SessionPaciente from './pages/SessionPaciente';
+import FormCita from './components/FormCita';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
   {
     path: "/registro",
     element: <Registro />
+  },
+  {
+    path: "/paciente/:idPaciente",
+    element: <SessionPaciente />
+  },
+  {
+    path: "/apartar-cita",
+    element: <FormCita />
   }
 ])
 

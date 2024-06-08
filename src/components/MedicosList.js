@@ -10,7 +10,7 @@ const MedicosList = () => {
     useEffect(() => {
         const fetchMedicos = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/medicos');
+                const response = await axios.get('http://localhost:8000/api/medicos-info');
                 setMedicos(response.data.Medicos);
               } catch (error) {
                 console.error('Error:', error);

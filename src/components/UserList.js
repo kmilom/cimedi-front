@@ -13,7 +13,7 @@ const UserList = () => {
     useEffect(() => {
         const fetchUsuarios = async () => {
           try {
-            const response = await axios.get('http://localhost:8000/api/usuarios');
+            const response = await axios.get('http://localhost:8000/api/usuarios-info');
             setUsuarios(response.data.Usuarios);
           } catch (error) {
             console.error('Error:', error);
@@ -81,7 +81,7 @@ const UserList = () => {
                                     <td>{item.idUsuario}</td>
                                     <td>{item.User}</td>
                                     <td>{item.Password}</td>
-                                    <td>{item.idRol}</td>
+                                    <td>{item.Rol}</td>
                                     <td>
                                         <Button onClick={() => handleEdit(item)}>Editar</Button>
                                     </td>
