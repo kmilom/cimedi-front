@@ -5,20 +5,17 @@ import Logo from "../components/Logo";
 import FormLogin from "../components/FormLogin";
 
 export default function Login() {
-  return (
-    <div className="login">
-      <div className="overlay">
-        <div className="boxform">
-          <FormLogin />
-        </div>
-      </div>
-      <Row>
-        <Col xs={12}  className = "header">
-            <Col xs = {{ span: 2, offset: 5 }} className = 'logo'>
-                <Logo />
-            </Col>
-        </Col>
-      </Row>
-    </div>
-  );
+
+  return(
+    <Row className="box">
+      <Col>
+        <Row  id="soy?">
+          <Col lg = {{ span: 4, offset: 4 }} xs = {{span: 10, offset: 1 }} className = "py-4"><Logo /></Col>
+        </Row>
+        <Row >
+          <Col lg = {{span: 4, offset: 4}} xs = {{span: 10, offset: 1 }} className = "boxform"><FormLogin /></Col>
+        </Row>
+      </Col>
+    </Row>
+  )
 }

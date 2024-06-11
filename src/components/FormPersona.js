@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const FormPersona = () => {
     const [persona, setPersona] = useState({
@@ -16,11 +17,13 @@ const FormPersona = () => {
     const [paciente, setPaciente] = useState({
         idPaciente: "",
         idEPS: ""
-    })
+    });
 
     const [generos, setGeneros] = useState([]);
     const [tiposDocumentos, setTiposDocumentos] = useState([]);
-    const [eps, setEps] = useState([])
+    const [eps, setEps] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchGeneros = async () => {
@@ -110,6 +113,8 @@ const FormPersona = () => {
 
             const responseUsuario = await axios.post('http://127.0.0.1:8000/api/crear-usuario', usuario)
             console.log('Usuario', responseUsuario.data.idUsuario)
+
+            navigate('/login');
         } catch (error) {
             console.error("Login Error: ", error);
         }

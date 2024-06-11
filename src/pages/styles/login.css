@@ -1,31 +1,13 @@
-.boxform {
-    width: 520px; 
-    height: 400px; 
+.boxform { 
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
     box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
-.header{
-    min-height: 40vh;
-    background-color: #083F93;
+.box{
+    background: linear-gradient(to bottom, #083F93 50%, #E5DFDF 50%);
 }
 
 .label {
     padding-top: 25px;
-}
-
-.logo{
-    position: relative;
-}
-
-.overlay {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
 }
